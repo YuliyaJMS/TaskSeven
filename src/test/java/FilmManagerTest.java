@@ -18,9 +18,9 @@ class FilmManagerTest {
     void shouldAddOneFilmAndFindAll() {
         FilmManager manager = new FilmManager();
         manager.add("Бладшот");
+        String[] expected = {"Бладшот"};
         String[] actual = manager.findAll();
-        assertEquals(1, actual.length);
-        assertEquals("Бладшот", actual[0]);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -29,18 +29,17 @@ class FilmManagerTest {
         manager.add("Бладшот");
         manager.add("Вперёд");
         manager.add("Отель Белград");
+        String[] expected = {"Бладшот", "Вперёд", "Отель Белград"};
         String[] actual = manager.findAll();
-        assertEquals(3, actual.length);
-        assertEquals("Бладшот", actual[0]);
-        assertEquals("Вперёд", actual[1]);
-        assertEquals("Отель Белград", actual[2]);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     void shouldReturnEmptyArrayWhenNoFilms() {
         FilmManager manager = new FilmManager();
+        String[] expected = {};
         String[] actual = manager.findLast();
-        assertEquals(0, actual.length);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -49,11 +48,9 @@ class FilmManagerTest {
         manager.add("Бладшот");
         manager.add("Вперёд");
         manager.add("Отель Белград");
+        String[] expected = {"Отель Белград", "Вперёд", "Бладшот"};
         String[] actual = manager.findLast();
-        assertEquals(3, actual.length);
-        assertEquals("Отель Белград", actual[0]);
-        assertEquals("Вперёд", actual[1]);
-        assertEquals("Бладшот", actual[2]);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -66,13 +63,9 @@ class FilmManagerTest {
         manager.add("Фильм 5");
         manager.add("Фильм 6");
         manager.add("Фильм 7");
+        String[] expected = {"Фильм 7", "Фильм 6", "Фильм 5", "Фильм 4", "Фильм 3"};
         String[] actual = manager.findLast();
-        assertEquals(5, actual.length);
-        assertEquals("Фильм 7", actual[0]);
-        assertEquals("Фильм 6", actual[1]);
-        assertEquals("Фильм 5", actual[2]);
-        assertEquals("Фильм 4", actual[3]);
-        assertEquals("Фильм 3", actual[4]);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -82,34 +75,35 @@ class FilmManagerTest {
         manager.add("Фильм 2");
         manager.add("Фильм 3");
         manager.add("Фильм 4");
+        String[] expected = {"Фильм 4", "Фильм 3", "Фильм 2"};
         String[] actual = manager.findLast();
-        assertEquals(3, actual.length);
-        assertEquals("Фильм 4", actual[0]);
-        assertEquals("Фильм 3", actual[1]);
-        assertEquals("Фильм 2", actual[2]);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     void shouldIgnoreNullFilm() {
         FilmManager manager = new FilmManager();
         manager.add(null);
+        String[] expected = {};
         String[] actual = manager.findAll();
-        assertEquals(0, actual.length);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     void shouldIgnoreEmptyFilm() {
         FilmManager manager = new FilmManager();
         manager.add("");
+        String[] expected = {};
         String[] actual = manager.findAll();
-        assertEquals(0, actual.length);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     void shouldIgnoreWhitespaceOnlyFilm() {
         FilmManager manager = new FilmManager();
         manager.add("   ");
+        String[] expected = {};
         String[] actual = manager.findAll();
-        assertEquals(0, actual.length);
+        assertArrayEquals(expected, actual);
     }
 }
